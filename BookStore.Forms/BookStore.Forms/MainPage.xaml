@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BookStore.Forms"
+			 xmlns:c="clr-namespace:BookStore.Forms.Converters"
+             x:Class="BookStore.Forms.MainPage" 
+			 IsEnabled="{Binding SortedBookSetted}">
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<c:BoolToStringStatusConverter x:Key="BoolToStringStatus" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<StackLayout>
+
+		<Label Text="Book Store"
+                VerticalOptions="End" 
+                HorizontalOptions="Center" />
+
+		<Picker Title="Select a books sort"
+			ItemsSource="{Binding BookSortNames}"
+			SelectedIndex="{Binding SelectedBooksSortIndex}" />
+
+		<Picker Title="Select book"
+			ItemsSource="{Binding SelectedBooksCollection}"
+			SelectedIndex="{Binding SelectedBookIndex}" />
+
+		<Button x:Name="DownloadBook" 
+			Text="{Binding SortedBookSetted, Converter={StaticResource BoolToStringStatus}}" 
+			Command="{Binding DownloadSelectedBookCommand}" />
+
+	</StackLayout>
+</ContentPage>
